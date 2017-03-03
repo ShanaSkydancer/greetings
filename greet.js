@@ -5,28 +5,42 @@ var outputName = document.querySelector(".nameOutput");
 var diffLang = document.getElementsByName("language");
 var diffGreeting= ["Hello, ", "Goeie dag, ", "Mholweni, "];
 var theCounter = document.querySelector(".countOutput");
-var count = 0;
-
 
 form.addEventListener("submit", function() {
   event.preventDefault();
   var language = greetingFunc();
-  count++;
+  // count++;
+  // var num = parseInt();
   theCounter.innerHTML = count
   outputName.innerHTML = language + inputName.value
 })
 
-// var nameCounter =  parseInt(localStorage.getItem('num')) + 1;
+function pageReload(){
+  if (localStorage.getItem === null) {
+    localStorage.setItem ("counter", 0)
+    counter++;
+  }
+  else {
+    var count = localStorage.getItem("counter")
+  }
+}
 
-// var nameCounter = localStorage.getItem("counter");
-// if (nameCounter === null) {
-//     nameCounter = 0;
-// } else {
-//     nameCounter++;
-// localStorage.setItem(".countOutput", nameCounter);
-// theCounter.innerHTML = nameCounter;
-// }
-
+// var nameCounter = parseInt(localStorage.getItem("counter"));
+//   if (nameCounter === null) {
+//       nameCounter = 0;
+//   } else {
+//      nameCounter++;
+//      localStorage.setItem(".countOutput", nameCounter);
+//  }
+//
+//  function pageReload(){
+//    if (location.reload()) {
+//      counter++;
+//      var x = document.getElementId("countOutput");
+//      x.innerHTML = counter;
+//      document.write(counter++);
+//    }
+//  }
 
 // function supportsLocalStorage() {
 //   try {
