@@ -5,58 +5,54 @@ var outputName = document.querySelector(".nameOutput");
 var diffLang = document.getElementsByName("language");
 var diffGreeting= ["Hello, ", "Goeie dag, ", "Mholweni, "];
 var theCounter = document.querySelector(".countOutput");
+var resetCount = document.querySelector("#resetButton");
+var namesGreeted = [];
+
+if (localStorage.getItem === null) {
+  localStorage.setItem ("counter", 0);
+  var count = 0;
+} else {
+  var count = Number(localStorage.getItem("counter"));
+}
 
 form.addEventListener("submit", function() {
   event.preventDefault();
+  count = localStorage.getItem("counter");
   var language = greetingFunc();
-  // count++;
-  // var num = parseInt();
-  theCounter.innerHTML = count
-  outputName.innerHTML = language + inputName.value
-})
-
-function pageReload(){
-  if (localStorage.getItem === null) {
-    localStorage.setItem ("counter", 0)
-    counter++;
+  var namesChecked = nameSearch();
+  if (namesChecked === false) {
+    count++;
+    namesGreeted.push(inputName.value);
+    console.log("Boo! 5");
   }
-  else {
-    var count = localStorage.getItem("counter")
+    console.log(namesGreeted);
+  theCounter.innerHTML = count;
+  outputName.innerHTML = language + inputName.value;
+  localStorage.setItem("counter", count);
+});
+
+
+function nameSearch() {
+  var boo = false;
+  for (var i = 0; i < namesGreeted.length; i++){
+    if (namesGreeted.length === 0) {
+      boo = false;
+      console.log("Boo! 1");
+    }
+    if (namesGreeted[i] === inputName.value) {
+      boo = true;
+      console.log("Boo! 2");
+  } else {
+      boo = false;
+      console.log("Boo! 3");
   }
 }
+  console.log("Boo! 4");
+  return boo;
 
-// var nameCounter = parseInt(localStorage.getItem("counter"));
-//   if (nameCounter === null) {
-//       nameCounter = 0;
-//   } else {
-//      nameCounter++;
-//      localStorage.setItem(".countOutput", nameCounter);
-//  }
-//
-//  function pageReload(){
-//    if (location.reload()) {
-//      counter++;
-//      var x = document.getElementId("countOutput");
-//      x.innerHTML = counter;
-//      document.write(counter++);
-//    }
-//  }
+}
 
-// function supportsLocalStorage() {
-//   try {
-//     return 'localStorage' in window && window['localStorage'] === 0;
-//   } catch(event) {
-//     return false;
-//   }
-// }
-//
-// window.onload = function() {
-//   if (supportsLocalStorage());
-//   var form = document.getElementById("fillForm");
-//   var inputName = document.getElementById("usersName");
-// }
-
-function greetingFunc() {
+  function greetingFunc() {
     var text = "";
     var i;
     for (i = 0; i < diffLang.length; i++) {
@@ -78,3 +74,10 @@ function greetingFunc() {
      return " ";
     }
 }
+
+function resetPageCount() {
+    event.preventDefault();
+    localStorage.setItem ("counter", 0);
+    var count = 0;
+    document.querySelector(".countOutput").innerHTML = count;
+};
