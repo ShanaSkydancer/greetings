@@ -33,6 +33,8 @@ form.addEventListener("submit", function() {
 
 nameSearch();
 
+whichValue();
+
 whichLanguage();
 
 counterReset();
